@@ -1,0 +1,81 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+body {margin:1.43em auto; padding:0; width:52em; background:rgb(254,254,254);
+	color:rgb(22,22,22);}
+* {font-family:'Georgia',serif;}
+
+a,h1 {color:rgb(083,083,083);}
+a {text-decoration:none;}
+a:hover {text-decoration:underline;}
+
+img {border:none;}
+img.bordered {border:2pt solid rgb(111,111,111); padding:2pt;}
+strong {color:rgb(042,042,042); font-size:1.2em;}
+section ul {list-style-type:none; text-indent:-2em; margin-left:3em;
+	padding:0;}
+ol li {list-style:decimal outside;}
+dt {margin-top:1em; font-size:1.2em; font-weight:bold;}
+dd {margin-left:1.43em;}
+form {padding:0; margin:0;}
+h1,h2,h3,h4,h5,h6 {font-size:1.3em; font-weight:normal; line-height:normal;}
+#site-title {font-size:5em; padding:0; margin:0 0 2pt 0;}
+h1 {font-size:2.2em;}
+h2 {font-size:1.6em;}
+fieldset {margin:1ex 0; padding:0; border:none;}
+legend {font-size:1.6em;}
+label {padding:2pt 8pt; border-radius:3pt; background:rgb(247,247,247);}
+input,textarea {border:2pt solid rgb(237,237,237); color:rgb(22,22,22);
+	margin:2pt 0;}
+textarea {width:100%; box-sizing:border-box; padding:3pt;}
+iframe {border:none; overflow:hidden;}
+code,pre {font-family:Consolas,'Bitstream Vera Sans Mono',monospace;
+	background:rgb(247,247,247); border:1pt solid rgb(232,232,232);}
+code {white-space:nowrap;}
+tr:nth-child(even) {background:rgb(247,247,247);}
+td {border-top:2pt solid rgb(222,222,222); padding-top:0;}
+thead {text-align:left;}
+pre {overflow-x:auto; padding:2pt;}
+
+.inline li {display:inline;}
+.clear {clear:both;}
+.left {float:left; margin:0 1em 1em 0;}
+.right {float:right; margin:0 0 1em 1em;}
+.center {text-align:center;}
+.hidden {display:none;}
+.linky {cursor:pointer;}
+.wide {width:100%; box-sizing:border-box; margin:1em 0; padding:1ex;}
+.high {background:rgb(220,110,110); color:white;}
+.low {background:rgb(110,220,220);}
+
+nav ul {text-indent:0; margin:0 0 .83em; padding:0 0 .83em 1.2em;
+	border-bottom:3pt solid rgb(222,222,222);}
+nav ul li {display:inline; font-size:.9em; margin:0 1ex 0 0;
+	border-left:2pt dotted rgb(42,143,143); padding:0 0 0 1ex;}
+footer {margin:1.2em 0 0; padding:3pt 0 0; clear:both; text-align:right;
+	border-top:2pt solid rgb(222,222,222); font-size:.8em;}
+
+
+article {width:39em; padding:0 2em 1em 0; float:left; margin:0;
+	line-height:1.43em;}
+aside {width:11em; font-size:0.9em; padding:0; float:left;}
+aside h3 {font-size:1.3em; margin:1ex 0 0; padding:0;}
+aside ul {margin:0; padding:0; text-indent:-2ex; margin:1ex 0 0 2.3ex;}
+aside ul ul {margin-top:0;}
+aside ul li:before {content:"\00BB \0020";}
+
+@media mobile, handheld, all and (max-width:52em),
+all and (view-mode:minimized){
+	#site-title {font-size:2.7em;}
+	img {max-width:100%;}
+	article {width:100%; float:none; margin:0 0 1em; padding:0;}
+	aside {width:100%; float:none; clear:both;
+		border-top:3pt solid rgb(222,222,222);}
+	body {width:auto; padding:1em; margin:0;}
+}
+@media print{
+	body {background:white; color:black; padding:0; margin:0; width:100%;
+		font-size:10pt;}
+	header,footer,aside {display:none;}
+}
