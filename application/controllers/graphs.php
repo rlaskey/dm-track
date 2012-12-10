@@ -25,6 +25,7 @@ class Graphs extends CI_Controller {
 			->select('UNIX_TIMESTAMP(time) time,value,level_id')
 			->where('time >=',gmdate($date_fmt,strtotime($range['start'])))
 			->where('time <=',gmdate($date_fmt,strtotime($range['stop'])))
+			->where('email',$this->session->userdata('email'))
 			->get('glucose');
 		$data->numbers = $query->result();
 		$query->free_result(); unset($query);

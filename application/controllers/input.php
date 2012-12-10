@@ -19,12 +19,14 @@ class Input extends CI_Controller {
 			if (empty($injection_id)) $this->db->insert('insulin');
 			else $this->db
 				->where('injection_id',$injection_id)
+				->where('email',$this->session->userdata('email'))
 				->update('insulin');
 			redirect();
 		}
 
 		$query = $this->db
 			->where('injection_id',$injection_id)
+			->where('email',$this->session->userdata('email'))
 			->get('insulin');
 		$data->object = $query->row();
 		$query->free_result(); unset($query);
@@ -52,12 +54,14 @@ class Input extends CI_Controller {
 			if (empty($level_id)) $this->db->insert('glucose');
 			else $this->db
 				->where('level_id',$level_id)
+				->where('email',$this->session->userdata('email'))
 				->update('glucose');
 			redirect();
 		}
 
 		$query = $this->db
 			->where('level_id',$level_id)
+			->where('email',$this->session->userdata('email'))
 			->get('glucose');
 		$data->object = $query->row();
 		$query->free_result(); unset($query);
