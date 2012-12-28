@@ -20,7 +20,7 @@ echo form_open('input/glucose/'.$object->level_id,'id="glucose-form"'),
 	PHP_EOL,
 	form_input('time',utc($object->time,'from'),'size="14"'),PHP_EOL,
 	form_textarea(array(
-		'cols' => 8, 'rows' => 2,'name' => 'notes',
+		'cols' => 8, 'rows' => 2,'name' => 'notes','maxlength' => 83,
 		'value' => $object->notes
 	)),PHP_EOL,
 	form_submit('save','save'),PHP_EOL,

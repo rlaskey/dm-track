@@ -24,7 +24,7 @@ echo form_open('input/insulin/'.$object->injection_id,'id="insulin-form"'),
 		'type',array_combine(Insulin::$types,Insulin::$types),$object->type
 	),PHP_EOL,
 	form_textarea(array(
-		'cols' => 8, 'rows' => 2,'name' => 'notes',
+		'cols' => 8, 'rows' => 2,'name' => 'notes','maxlength' => 83,
 		'value' => $object->notes
 	)),
 	form_input('time',utc($object->time,'from'),'size="14"'),PHP_EOL,
