@@ -11,7 +11,7 @@ class Graphs extends CI_Controller {
 		parent::__construct();
 		$this->load->vars(array(
 			'jquery' => array('flot'),
-			'sidebars' => array('charts/range'),
+			'sidebars' => array('input/range'),
 		));
 	}
 

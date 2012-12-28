@@ -12,7 +12,7 @@ class Charts extends CI_Controller {
 		$this->load->vars(array('sidebars' => array(
 			'input/glucose',
 			'input/insulin',
-			'charts/range',
+			'input/range',
 		)));
 	}
 
