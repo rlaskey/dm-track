@@ -3,13 +3,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 $(document).ready(function(){
-var controller = $('#edit').data('controller');
-
-$('#chart tr').on('click',function(){
-	$('#edit').load(controller+$(this).attr('id').replace('-','/'));
-	$('#edit-box').removeClass('hidden');
+	$('#chart a').replaceWith(function(){return $(this).text();});
+	$('#chart tr').on('click',function(){
+		$('#edit').load(CI.base+'input/'+$(this).attr('id').replace('-','/'));
+		$('#edit-box').removeClass('hidden');
 	});
-$('#edit-box span').on('click',function(){
-	$(this).parent().addClass('hidden');
-	});
+	$('#edit-box span').on('click',function(){$(this).parent().addClass('hidden');});
 });
