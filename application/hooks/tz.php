@@ -5,6 +5,8 @@
 
 function handle_tz()
 {
+	$CI =& get_instance();
+	$tz = $CI->config->item('default_tz');
 	/* expand to use defaults; use CI timezone_menu, session, etc. */
-	date_default_timezone_set('America/New_York');
+	if ( ! empty($tz)) date_default_timezone_set($tz);
 }

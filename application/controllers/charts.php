@@ -33,6 +33,7 @@ class Charts extends CI_Controller {
 			'CONCAT(type,":",units) value,notes FROM insulin'.$where.
 			') ORDER BY time'
 		);
+		$data = new stdClass();
 		$data->numbers = $query->result();
 		$query->free_result(); unset($query);
 

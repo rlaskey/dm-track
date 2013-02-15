@@ -27,6 +27,7 @@ class Graphs extends CI_Controller {
 			->where('time <=',gmdate($date_fmt,strtotime($range['stop'])))
 			->where('email',$this->session->userdata('email'))
 			->get('glucose');
+		$data = new stdClass();
 		$data->numbers = $query->result();
 		$query->free_result(); unset($query);
 

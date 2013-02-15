@@ -46,6 +46,7 @@ class Auth extends CI_Controller {
 		if ($object->status !== 'okay')
 			show_error('Persona status is not okay :/');
 
+		// TODO: pull current_tz from DB; revert to default if not found
 		$session_data = array(
 			'email' => $object->email,
 			'range' => $this->config->item('default_range'),

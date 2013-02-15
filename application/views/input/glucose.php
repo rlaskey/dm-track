@@ -7,6 +7,7 @@ if ( ! function_exists('utc')) $this->load->helper('time');
 if ( ! isset($object) || empty($object))
 {
 	unset($object);
+	$object = new stdClass();
 	$object->level_id = NULL;
 	$object->value = NULL;
 	$object->time = gmdate('y-m-d H:i');

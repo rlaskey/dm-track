@@ -3,6 +3,7 @@
 $config['default_range'] = array(
 	'start' => '1 day ago','stop' => 'tomorrow'
 );
+$config['default_tz'] = 'America/New_York';
 /*
 |--------------------------------------------------------------------------
 | Base Site URL

@@ -28,6 +28,7 @@ class Input extends CI_Controller {
 			->where('injection_id',$injection_id)
 			->where('email',$this->session->userdata('email'))
 			->get('insulin');
+		$data = new stdClass();
 		$data->object = $query->row();
 		$query->free_result(); unset($query);
 
@@ -63,6 +64,7 @@ class Input extends CI_Controller {
 			->where('level_id',$level_id)
 			->where('email',$this->session->userdata('email'))
 			->get('glucose');
+		$data = new stdClass();
 		$data->object = $query->row();
 		$query->free_result(); unset($query);
 
@@ -78,6 +80,7 @@ class Input extends CI_Controller {
 
 	public function range()
 	{
+		// just go to the front page if navigated to directly
 		if ( ! $this->input->post()) redirect();
 
 		foreach (array_keys($this->config->item('default_range')) AS $i)
@@ -92,9 +95,26 @@ class Input extends CI_Controller {
 		$this->session->set_userdata('range',array(
 			'start' => $start,'stop' => $stop
 		));
+		self::handleRedirect();
+	}
 
-		if ($this->input->post('currently'))
-			redirect($this->input->post('currently'));
+
+	public function tz()
+	{
+		if ( ! $this->input->post()) redirect();
+		// if no change, return self::handleRedirect();
+
+		// update DB; save setting
+		$this->session->set_userdata('tz','TZ');
+		self::handleRedirect();
+	}
+
+
+	private static function handleRedirect()
+	{
+		$CI =& get_instance();
+		if ($CI->input->post('currently'))
+			redirect($CI->input->post('currently'));
 		else redirect();
 	}
 }

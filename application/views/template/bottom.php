@@ -8,14 +8,25 @@ echo '</article>',PHP_EOL,
 
 if (isset($sidebars))
 {
-	foreach ($sidebars AS $sidebar) {$this->load->view($sidebar);}
+	foreach ($sidebars AS $sidebar) $this->load->view($sidebar);
 	unset($sidebars,$sidebar);
 }
 
 echo '</aside><!-- #secondary -->',PHP_EOL,
 
-'<footer>',PHP_EOL,
-'&copy; ',(date('Y') > 2012 ? '2012 - ' : ''),date('Y'),', ',
-'<a href="http://rlaskey.org/about">Richard Moss Laskey, III</a>',
-'</footer>',PHP_EOL,
-'</body>';
+	'<footer>',PHP_EOL,
+
+	'<div>',
+	'&copy; ',(date('Y') > 2012 ? '2012 - ' : ''),date('Y'),', ',
+	'<a href="http://rlaskey.org/about">',
+	'Richard Moss Laskey, III',
+	'</a></div>',PHP_EOL;
+
+if ($this->session->userdata('email')) echo '<div>current timezone: ',anchor(
+	'http://www.timezoneconverter.com/cgi-bin/zoneinfo.tzc?tz='.
+	date_default_timezone_get(),
+		date_default_timezone_get()
+	),'</div>';
+
+echo '</footer>',PHP_EOL,
+	'</body>';

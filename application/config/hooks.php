@@ -10,13 +10,13 @@
 |
 */
 
-$hook['pre_system'] = array(
+$hook['post_controller_constructor'][] = array(
 	'function' => 'handle_tz',
 	'filename' => 'tz.php',
 	'filepath' => 'hooks',
 );
 
-$hook['post_controller_constructor'] = array(
+$hook['post_controller_constructor'][] = array(
 	'function' => 'is_authorized',
 	'filename' => 'authorize.php',
 	'filepath' => 'hooks'
