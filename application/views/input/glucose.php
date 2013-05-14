@@ -10,19 +10,27 @@ if ( ! isset($object) || empty($object))
 	$object = new stdClass();
 	$object->level_id = NULL;
 	$object->value = NULL;
-	$object->time = gmdate('y-m-d H:i');
+	$object->time = gmdate('Y-m-d H:i');
 	$object->notes = NULL;
 }
 echo form_open('input/glucose/'.$object->level_id,'id="glucose-form"'),
+
 	form_fieldset(
 		'glucose'.($object->level_id === NULL ? '+' : ':#'.$object->level_id)
 	),PHP_EOL,
-	form_input('value',$object->value,'placeholder="83" size="3"'),
-	PHP_EOL,
-	form_input('time',utc($object->time,'from'),'size="14"'),PHP_EOL,
+
+	'<input type="number" name="value" size="3" min="0" placeholder="83" ',
+	'required value="',$object->value,'" />',PHP_EOL,
+
+	'<input type="datetime" name="time" size="14" required value="',
+	utc($object->time,'from'),
+	'" />',PHP_EOL,
+
 	form_textarea(array(
 		'cols' => 8, 'rows' => 2,'name' => 'notes','maxlength' => 83,
 		'value' => $object->notes
 	)),PHP_EOL,
+
 	form_submit('save','save'),PHP_EOL,
+
 	'</fieldset></form>',PHP_EOL;

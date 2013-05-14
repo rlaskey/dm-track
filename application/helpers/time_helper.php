@@ -10,6 +10,6 @@ if ( ! function_exists('utc'))
 		$gmt_offset = (int) (date('O') * 60 * 60 / 100);
 		if ($direction === 'from') $gmt_offset = -1 * $gmt_offset;
 		$time = strtotime($string) - $gmt_offset;
-		return date('y-m-d H:i',$time);
+		return date('Y-m-d H:i',$time);
 	}
 }
