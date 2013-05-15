@@ -34,7 +34,7 @@ echo form_open('input/insulin/'.$object->injection_id,'id="insulin-form"'),
 		'value' => $object->notes
 	)),
 
-	'<input type="datetime" name="time" size="14" required value="',
+	'<input type="datetime" name="time" size="16" required value="',
 	utc($object->time,'from'),
 	'" />',PHP_EOL,
 
