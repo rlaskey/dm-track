@@ -22,7 +22,7 @@ echo form_open('input/insulin/'.$object->injection_id,'id="insulin-form"'),
 		($object->injection_id === NULL ? '+' : ':#'.$object->injection_id)
 	),PHP_EOL,
 
-	'<input type="number" name="units" size="3" min="0" placeholder="0" ',
+	'<input type="number" name="units" min="0" placeholder="0" ',
 	'required value="',$object->units,'" />',PHP_EOL,
 
 	form_dropdown(
@@ -34,7 +34,7 @@ echo form_open('input/insulin/'.$object->injection_id,'id="insulin-form"'),
 		'value' => $object->notes
 	)),
 
-	'<input type="datetime" name="time" size="16" required value="',
+	'<input type="datetime" name="time" required value="',
 	utc($object->time,'from'),
 	'" />',PHP_EOL,
 

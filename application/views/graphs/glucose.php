@@ -3,7 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-echo '<div id="graph" class="wide" style="height:37em"></div>',PHP_EOL,
+echo '<div id="graph"></div>',PHP_EOL,
 	'<script>$(function(){',PHP_EOL,
 	'var numbers = [';
 foreach ($numbers AS $number) echo '[',

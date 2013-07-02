@@ -10,7 +10,7 @@ echo form_open('input/range'),form_fieldset('range:'),PHP_EOL,
 
 	form_hidden('currently',current_url()),PHP_EOL;
 
-$common = ' size="11" required';
+$common = ' class="range" required';
 echo form_input('start',$range['start'],'placeholder="1 week ago"'.$common),
 	' -&gt; ',PHP_EOL,
 	form_input('stop',$range['stop'],'placeholder="today"'.$common),PHP_EOL;

@@ -9,16 +9,18 @@ function show_title(&$title)
 	if (isset($title) && ! empty($title)) echo $title;
 	else echo 'DM.track';
 }
+$burst = date('Y-m-d');// update scripts/css once a day
 echo '<title>',show_title($title),'</title>',PHP_EOL,
 	'<meta name="viewport" content="width=device-width, user-scalable=no" />',
-PHP_EOL;
+	PHP_EOL,
+	'<link rel="stylesheet" href="',site_url('assets/css/dm.css?'),
+	$burst,'" />',PHP_EOL;
 
-$burst = date('Y-m-d');// update scripts/css once a day
 if (isset($jquery) && is_array($jquery))
 {
-	echo '<script src="',site_url('assets/js/jquery.js?'),$burst,
-		'"> </script>',PHP_EOL,
-		'<script>var CI = {"base":"',site_url(),'"};</script>',PHP_EOL;
+	echo '<script>var CI = {"base":"',site_url(),'"};</script>',PHP_EOL,
+		'<script src="',site_url('assets/js/jquery.js?'),$burst,
+		'"> </script>',PHP_EOL;
 	foreach ($jquery AS $j) echo '<script src="',
 		site_url('assets/js/'.$j.'.js?'),$burst,'"> </script>',PHP_EOL;
 	unset($jquery,$j);
@@ -28,9 +30,7 @@ if (isset($jquery) && is_array($jquery))
 if ($this->uri->segment(1) === 'auth') echo '<script src="',
 	'https://login.persona.org/include.js"></script>',PHP_EOL;
 
-echo '<link rel="stylesheet" href="',site_url('assets/css/dm.css?'),
-	$burst,'" />',PHP_EOL,
-	'</head><body>',PHP_EOL,
+echo '</head><body>',PHP_EOL,
 
 	'<header>',PHP_EOL,
 	'<h1 id="site-title"><a href="',site_url(),'">',

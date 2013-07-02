@@ -19,10 +19,10 @@ echo form_open('input/glucose/'.$object->level_id,'id="glucose-form"'),
 		'glucose'.($object->level_id === NULL ? '+' : ':#'.$object->level_id)
 	),PHP_EOL,
 
-	'<input type="number" name="value" size="3" min="0" placeholder="83" ',
+	'<input type="number" name="value" min="0" placeholder="83" ',
 	'required value="',$object->value,'" />',PHP_EOL,
 
-	'<input type="datetime" name="time" size="16" required value="',
+	'<input type="datetime" name="time" required value="',
 	utc($object->time,'from'),
 	'" />',PHP_EOL,
 
