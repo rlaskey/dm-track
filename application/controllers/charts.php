@@ -38,7 +38,7 @@ class Charts extends CI_Controller {
 		$query->free_result(); unset($query);
 
 
-		$data->jquery = array('table-editor');
+		$data->js = array('table-editor');
 		$this->load->view('charts/table',$data);
 	}
 }

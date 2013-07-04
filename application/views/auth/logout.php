@@ -12,7 +12,7 @@ if ($email !== FALSE) echo '<p>NOTE: you signed in via ',
 	'If you are on a public computer, you may wish to ',
 	'log out of that service as well.</p>',
 	PHP_EOL; ?>
-<script>
+<script>'use strict';
 navigator.id.watch({
 	loggedInUser: <?php echo ($email === FALSE ? 'null' : '"'.$email.'"'); ?>,
 	onlogin:function(){},

@@ -9,22 +9,13 @@ function show_title(&$title)
 	if (isset($title) && ! empty($title)) echo $title;
 	else echo 'DM.track';
 }
-$burst = date('Y-m-d');// update scripts/css once a day
+$burst = date('Y-W');// update scripts/css once a week
+$this->load->vars(compact('burst'));
 echo '<title>',show_title($title),'</title>',PHP_EOL,
 	'<meta name="viewport" content="width=device-width, user-scalable=no" />',
 	PHP_EOL,
 	'<link rel="stylesheet" href="',site_url('assets/css/dm.css?'),
 	$burst,'" />',PHP_EOL;
-
-if (isset($jquery) && is_array($jquery))
-{
-	echo '<script>var CI = {"base":"',site_url(),'"};</script>',PHP_EOL,
-		'<script src="',site_url('assets/js/jquery.js?'),$burst,
-		'"> </script>',PHP_EOL;
-	foreach ($jquery AS $j) echo '<script src="',
-		site_url('assets/js/'.$j.'.js?'),$burst,'"> </script>',PHP_EOL;
-	unset($jquery,$j);
-}
 
 // load Persona for login/logout pages
 if ($this->uri->segment(1) === 'auth') echo '<script src="',

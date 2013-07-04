@@ -9,9 +9,7 @@ class Auth extends CI_Controller {
 	public function login()
 	{
 		if ($this->session->userdata('email') !== FALSE) redirect();
-		$data = new stdClass();
-		$data->jquery = array();
-		$this->load->view('auth/login',$data);
+		$this->load->view('auth/login');
 	}
 
 

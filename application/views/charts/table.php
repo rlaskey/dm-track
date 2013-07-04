@@ -39,7 +39,7 @@ foreach ($numbers AS $k => $v)
 echo '</tbody></table>',PHP_EOL,
 
 	'<div id="edit-box" class="hidden">',
-	'<span class="right linky">close</span>',PHP_EOL,
+	'<span id="close-edit-box" class="right linky">close</span>',PHP_EOL,
 	'<div id="edit"></div>',
 	'</div>',PHP_EOL;
 
