@@ -3,14 +3,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-echo form_open(),'</form>',PHP_EOL,// plop down the CSRF
-	'<p>To sign into this site, you will need to login ',
+echo '<p>To sign into this site, you will need to login ',
 	'<a href="#" id="personaLogin">using Mozilla Persona</a>.</p>',PHP_EOL; ?>
 <script>'use strict';
 (function(){
-var csrf = {name:'<?php echo $this->config->item('csrf_token_name'); ?>'};
-csrf.value = document.getElementsByTagName('form')[0]
-	.querySelector('input[name=dm_csrf]').value;
+var csrf = {
+	name:'<?php echo $this->config->item('csrf_token_name'); ?>',
+	value:'<?php echo $this->security->get_csrf_hash(); ?>'
+};
 
 var signinLink = document.getElementById('personaLogin');
 if(signinLink){signinLink.onclick = function(evt){
