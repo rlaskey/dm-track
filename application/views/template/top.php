@@ -43,4 +43,4 @@ if ($this->session->userdata('email'))
 
 echo '</header>',PHP_EOL,
 
-	'<article>',PHP_EOL;
+	'<main>',PHP_EOL;

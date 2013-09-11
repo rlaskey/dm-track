@@ -40,14 +40,14 @@ nav>ul>li {display:inline; font-size:.9em; margin:0 1ex 0 0;
 footer {margin:1.2em 0 0; padding:3pt 0 0; clear:both; text-align:right;
 	border-top:2pt solid rgb(222,222,222); font-size:.8em;}
 
-article {width:38em; padding:0 2em 1em 0; float:left; margin:0;
+main {width:38em; padding:0 2em 1em 0; float:left; margin:0;
 	line-height:1.43em;}
 aside {width:12em; padding:0; float:left;}
 
 @media mobile, handheld, all and (max-width:52em),
 all and (view-mode:minimized){
 	#site-title {font-size:2.7em;}
-	article {width:100%; float:none; margin:0 0 1em; padding:0;}
+	main {width:100%; float:none; margin:0 0 1em; padding:0;}
 	aside {width:100%; float:none; clear:both;
 		border-top:3pt solid rgb(222,222,222);}
 	body {width:auto; padding:1em; margin:0;}
