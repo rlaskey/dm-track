@@ -1,5 +1,7 @@
 'use strict';
 (function(){
+	var storedData, mainWidth, timer;
+
 	var glucoseColor = function(data){
 		var color = 0;
 		if(data.glucose < 180 && data.glucose > 80){
@@ -9,15 +11,17 @@
 		else if(data.glucose <= 80) color = 240;
 		return 'hsl(' + color + ',83%,42%)';
 	};
+
 	var drawPlot = function(error, data){
+		storedData = data;
 		var main = document.querySelector('main');
-		var containerSize = main.offsetWidth;
+		mainWidth = main.offsetWidth;
 		var margin = {top:20, bottom:20, right:10, left:40};
-		var width = containerSize - margin.left - margin.right,
-			height = containerSize - margin.top - margin.bottom;
+		var width = mainWidth - margin.left - margin.right,
+			height = mainWidth - margin.top - margin.bottom;
 
 		var svg = d3.select(main).append('svg')
-			.attr('height', containerSize).attr('width', containerSize)
+			.attr('height', mainWidth).attr('width', mainWidth)
 			.append('g')
 			.attr(
 				'transform',
@@ -51,9 +55,22 @@
 			.attr('cy',function(d){return y(d.glucose);})
 			.style('fill',glucoseColor);
 	};
+
 	var loadPlot = function(){
 		window.removeEventListener('load',loadPlot);
 		d3.tsv(CI.base + 'graphs/glucose_data', drawPlot);
 	};
 	window.addEventListener('load',loadPlot);
+
+	var reloadPlot = function(){
+		var main = document.querySelector('main');
+		if(mainWidth === main.offsetWidth) return;
+
+		var child = main.querySelector('svg');
+		if(child) main.removeChild(child);
+
+		clearTimeout(timer);
+		timer = setTimeout(function(){drawPlot(null,storedData);}, 330);
+	};
+	window.addEventListener('resize',reloadPlot);
 })();
