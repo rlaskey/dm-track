@@ -34,13 +34,6 @@ echo '</footer>',PHP_EOL,
 
 if (isset($js) && is_array($js)) foreach ($js AS $j) echo '<script src="',
 	site_url('assets/js/'.$j.'.js?'),$burst,'"> </script>',PHP_EOL;
-if (isset($jquery) && is_array($jquery))
-{
-	echo '<script src="',site_url('assets/js/jquery.js?'),$burst,
-		'"> </script>',PHP_EOL;
-	foreach ($jquery AS $j) echo '<script src="',
-		site_url('assets/js/'.$j.'.js?'),$burst,'"> </script>',PHP_EOL;
-}
-unset($js,$jquery,$j);
+unset($js,$j);
 
 echo '</body>';
