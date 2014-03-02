@@ -32,8 +32,28 @@ echo '</footer>',PHP_EOL,
 
 	'<script>var CI = {"base":"',site_url(),'"};</script>',PHP_EOL;
 
-if (isset($js) && is_array($js)) foreach ($js AS $j) echo '<script src="',
-	site_url('assets/js/'.$j.'.js?'),$burst,'"> </script>',PHP_EOL;
-unset($js,$j);
+
+$scripts = array();
+$script_prefix = 'body:';
+if (isset($js) && is_array($js)) foreach ($js AS $j)
+	$scripts[] = site_url('assets/js/'.$j.'.js?').$burst;
+if (isset($private_js) && is_array($private_js)) foreach ($private_js AS $j)
+	$scripts[] = site_url('js/show/'.$j.'.js?').$burst;
+
+if ( ! empty($scripts))
+{
+	array_unshift(
+		$scripts,
+		$script_prefix.'var CI = {"base":"'.site_url().'"};'
+	);
+	foreach ($scripts AS $s)
+	{
+		if (strpos($s,$script_prefix) === 0) echo '<script>',
+			'"use strict";',PHP_EOL,
+			substr($s,strlen($script_prefix)),
+			'</script>',PHP_EOL;
+		else echo '<script src="',$s,'?',$burst,'"></script>',PHP_EOL;
+	}
+}
 
 echo '</body>';
