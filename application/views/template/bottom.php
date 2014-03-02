@@ -22,9 +22,9 @@ echo '</aside><!-- #secondary -->',PHP_EOL,
 	'Richard Moss Laskey, III',
 	'</a></div>',PHP_EOL;
 
-if ($this->session->userdata('email')) echo '<div>current timezone: ',anchor(
-	'http://www.timezoneconverter.com/cgi-bin/zoneinfo.tzc?tz='.
-	date_default_timezone_get(),
+if ($this->session->userdata('user_id')) echo '<div>current timezone: ',
+	anchor(
+		'http://www.timezoneconverter.com/cgi-bin/zoneinfo.tzc?tz='.date_default_timezone_get(),
 		date_default_timezone_get()
 	),'</div>';
 

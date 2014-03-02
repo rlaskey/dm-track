@@ -7,14 +7,15 @@ echo '<p>Thank you for visiting! You are now logged out. ',
 	'Whenever you want to log back in, just visit ',anchor(site_url()),
 	'.</p>',PHP_EOL;
 
-if ($email !== FALSE) echo '<p>NOTE: you signed in via ',
+if ($persona !== FALSE) echo '<p>NOTE: you signed in via ',
 	anchor('https://login.persona.org','Persona'),'. ',
 	'If you are on a public computer, you may wish to ',
 	'log out of that service as well.</p>',
 	PHP_EOL; ?>
 <script>'use strict';
 navigator.id.watch({
-	loggedInUser: <?php echo ($email === FALSE ? 'null' : '"'.$email.'"'); ?>,
+	loggedInUser: <?php
+echo ($persona === FALSE ? 'null' : '"'.$persona.'"'); ?>,
 	onlogin:function(){},
 	onlogout:function(){},
 	onready:function(){navigator.id.logout();}

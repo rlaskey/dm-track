@@ -7,7 +7,7 @@ function is_authorized()
 {
 	$CI =& get_instance();
 	if (
-		$CI->session->userdata('email') === FALSE &&
+		$CI->session->userdata('user_id') === FALSE &&
 		$CI->uri->segment(1) !== 'auth'
 	) redirect('auth/login');
 	unset($login_page);

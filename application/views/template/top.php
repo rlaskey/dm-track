@@ -27,7 +27,7 @@ echo '</head><body>',PHP_EOL,
 	'<h1 id="site-title"><a href="',site_url(),'">',
 	show_title($title),'</a></h1>',PHP_EOL;
 
-if ($this->session->userdata('email'))
+if ($this->session->userdata('user_id'))
 {
 	$navigation_links = array(
 		'charts' => 'Charts',

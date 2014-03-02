@@ -15,18 +15,18 @@ class Input extends CI_Controller {
 			$this->load->helper('time');
 			$this->db
 				->set('time',utc($this->input->post('time')))
-				->set('email',$this->session->userdata('email'));
+				->set('user_id',$this->session->userdata('user_id'));
 			if (empty($injection_id)) $this->db->insert('insulin');
 			else $this->db
 				->where('injection_id',$injection_id)
-				->where('email',$this->session->userdata('email'))
+				->where('user_id',$this->session->userdata('user_id'))
 				->update('insulin');
 			redirect();
 		}
 
 		$query = $this->db
 			->where('injection_id',$injection_id)
-			->where('email',$this->session->userdata('email'))
+			->where('user_id',$this->session->userdata('user_id'))
 			->get('insulin');
 		$data = new stdClass();
 		$data->object = $query->row();
@@ -51,18 +51,18 @@ class Input extends CI_Controller {
 			$this->load->helper('time');
 			$this->db
 				->set('time',utc($this->input->post('time')))
-				->set('email',$this->session->userdata('email'));
+				->set('user_id',$this->session->userdata('user_id'));
 			if (empty($level_id)) $this->db->insert('glucose');
 			else $this->db
 				->where('level_id',$level_id)
-				->where('email',$this->session->userdata('email'))
+				->where('user_id',$this->session->userdata('user_id'))
 				->update('glucose');
 			redirect();
 		}
 
 		$query = $this->db
 			->where('level_id',$level_id)
-			->where('email',$this->session->userdata('email'))
+			->where('user_id',$this->session->userdata('user_id'))
 			->get('glucose');
 		$data = new stdClass();
 		$data->object = $query->row();

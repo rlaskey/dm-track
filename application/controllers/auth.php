@@ -8,7 +8,7 @@ class Auth extends CI_Controller {
 
 	public function login()
 	{
-		if ($this->session->userdata('email') !== FALSE) redirect();
+		if ($this->session->userdata('user_id') !== FALSE) redirect();
 		$this->load->view('auth/login');
 	}
 
@@ -16,7 +16,7 @@ class Auth extends CI_Controller {
 	public function logout()
 	{
 		$data = new stdClass();
-		$data->email = $this->session->userdata('email');
+		$data->persona = $this->session->userdata('persona');
 		$this->session->sess_destroy();
 		$this->load->view('auth/logout',$data);
 	}
@@ -46,9 +46,30 @@ class Auth extends CI_Controller {
 
 		// TODO: pull current_tz from DB; revert to default if not found
 		$session_data = array(
-			'email' => $object->email,
+			'persona' => $object->email,
 			'range' => $this->config->item('default_range'),
 		);
+
+		$query = $this->db
+			->where('email',$object->email)
+			->get('user');
+		if ($query->num_rows() === 1)
+		{
+			$user = $query->row();
+			$session_data['user_id'] = $user->user_id;
+		}
+		else
+		{
+			$this->load->helper('reorder');
+			$session_data['user_id'] = $next_user_id
+				= find_next_pk('user','user_id');
+			$this->db
+				->set('user_id',$next_user_id)
+				->set('email',$object->email)
+				->insert('user');
+		}
+		$query->free_result(); unset($query);
+
 		$this->session->set_userdata($session_data);
 	}
 }

@@ -23,8 +23,8 @@ class Charts extends CI_Controller {
 		$range = $this->session->userdata('range');
 		$when = 'time >= "'.gmdate($date_fmt,strtotime($range['start'])).
 			'" AND time <= "'.gmdate($date_fmt,strtotime($range['stop'])).'"';
-		$where = ' WHERE email="'.$this->session->userdata('email').'" AND '.
-			$when;
+		$where = ' WHERE user_id="'.$this->session->userdata('user_id').'" '.
+			'AND '.$when;
 
 		$query = $this->db->query(
 			'(SELECT level_id PK,UNIX_TIMESTAMP(time) time,value,notes '.

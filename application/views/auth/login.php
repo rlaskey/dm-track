@@ -37,9 +37,9 @@ var processResponse = function(){
 
 navigator.id.watch({
 	loggedInUser: <?php echo (
-		$this->session->userdata('email') === FALSE
+		$this->session->userdata('persona') === FALSE
 		? 'null'
-		: '"'.$this->session->userdata('email').'"'
+		: '"'.$this->session->userdata('persona').'"'
 	); ?>,
 	onlogin:function(assertion){
 		var SEPARATOR = '&';
