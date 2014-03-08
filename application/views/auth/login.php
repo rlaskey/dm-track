@@ -7,6 +7,7 @@ echo '<p>To sign into this site, you will need to login ',
 	'<a href="#" id="personaLogin">using Mozilla Persona</a>.</p>',PHP_EOL; ?>
 <script>'use strict';
 (function(){
+var CI = {"base":"<?php echo site_url() ?>"};
 var csrf = {
 	name:'<?php echo $this->config->item('csrf_token_name'); ?>',
 	value:'<?php echo $this->security->get_csrf_hash(); ?>'

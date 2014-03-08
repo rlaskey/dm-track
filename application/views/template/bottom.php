@@ -28,9 +28,7 @@ if ($this->session->userdata('user_id')) echo '<div>current timezone: ',
 		date_default_timezone_get()
 	),'</div>';
 
-echo '</footer>',PHP_EOL,
-
-	'<script>var CI = {"base":"',site_url(),'"};</script>',PHP_EOL;
+echo '</footer>',PHP_EOL;
 
 
 $scripts = array();
