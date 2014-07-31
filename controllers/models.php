@@ -11,8 +11,7 @@ class Models
 			http_response_code(404) && exit;
 		$models = explode('-', \Core\Router::$uriParts[1]);
 
-		header('Cache-Control: max-age=31415926');
-		header('Content-Type: text/javascript'); ?>
+		\Core\Headers::cache('text/javascript; charset=utf-8'); ?>
 'use strict';
 var Models = Models || {};
 

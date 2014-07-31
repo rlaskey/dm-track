@@ -17,8 +17,7 @@ class Js
 			|| ! preg_match('/.js$/', $file)
 		) http_response_code(404) && exit;
 
-		header('Cache-Control: max-age=31415926');
-		header('Content-Type: text/javascript');
+		\Core\Headers::cache('text/javascript; charset=utf-8');
 
 		readfile($file);
 	}
