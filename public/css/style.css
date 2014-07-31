@@ -1,0 +1,80 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+body {margin:0; padding:1em; background:rgb(254,254,254); color:rgb(22,22,22);
+	font-family:'Open Sans','Ubuntu',sans-serif;}
+
+nav>ul {text-indent:0; margin:0 0 .83em; padding:0 0 .83em 1.2em;
+	border-bottom:3pt solid rgb(222,222,222);}
+nav>ul>li {display:inline; font-size:.9em; margin:0 1ex 0 0;
+	border-left:2pt dotted rgb(42,143,143); padding:0 0 0 1ex;}
+footer {margin:1.2em 0 0; padding:3pt 0 0; clear:both; text-align:right;
+	border-top:2pt solid rgb(222,222,222); font-size:.8em;}
+
+main,aside {line-height:1.43em;}
+main {margin:0 0 1em; padding:0;}
+aside {padding:0; border-bottom:3pt solid rgb(222,222,222);}
+
+#site-title {font-size:2.7em; padding:0; margin:0 0 2pt 0;}
+
+#modal-backdrop,#modal-holder {position:fixed;
+	top:0; right:0; bottom:0; left:0;}
+#modal-backdrop {background:black; opacity:.42; z-index:1024;}
+#modal-holder {z-index:2048; overflow-y:auto;}
+#modal {background:white; border-top:3pt solid rgb(222,222,222);
+	padding:1em; margin:1em;}
+
+#alerts {position:fixed; right:1em; bottom:1em; left:1em;
+	z-index:3072; overflow-y:auto; max-height:10em;
+	background:rgb(237,237,237); padding:1ex; margin:0;}
+#alerts>li {padding:3pt; color:white;}
+.alert-success {background:rgb(83,174,83);}
+.alert-info {background:rgb(42,83,174);}
+.alert-warning {background:rgb(237,174,42);}
+.alert-danger {background:rgb(174,42,42);}
+
+
+@media all and (min-width:52em) {
+	body {width:52em; margin:1.43em auto; padding:0;}
+	main,aside {margin:0;}
+	main {width:40em; float:left; padding:0 2em 1em 0;}
+	main.no-asides {width:100%; padding:0 0 1em;}
+	aside {width:10em; float:right; border:none;}
+	#modal {width:38em; margin:2em auto;}
+	#site-title {font-size:5em;}
+}
+@media print{
+	body {background:white; color:black; padding:0; margin:0; width:100%;
+		font-size:10pt;}
+	header,footer,aside {display:none;}
+}
+
+a {color:rgb(042,143,143); text-decoration:none;}
+header a {color:rgb(083,083,083);}
+a:hover {text-decoration:underline;}
+h1 {font-weight:normal;}
+
+form {padding:0; margin:0;}
+legend {font-size:1.6em;}
+input,textarea,select {border:2pt solid rgb(237,237,237); color:rgb(22,22,22);
+	margin:2pt 0;}
+input[type=datetime] {width:8.3em;}
+input[type=number] {width:3.1em;}
+textarea {width:100%; box-sizing:border-box;}
+.range {width:6.4em;}
+
+tr:nth-child(even) {background:rgb(247,247,247);}
+td {border-top:2pt solid rgb(222,222,222); padding-top:0;}
+thead {text-align:left;}
+
+aside ul {list-style-type: circle;}
+
+#edit-box {margin-top:2em; border-top:2pt solid rgb(222,222,222);}
+
+.float-right {float:right; margin:0 0 1em 1em;}
+.hide {display:none;}
+.pointer {cursor:pointer;}
+
+path,line {fill:none; stroke:black; shape-rendering:crispEdges;}
+text {text-anchor:end;}
