@@ -5,8 +5,7 @@
 
 class User extends \Core\Model
 {
-	protected static $PK = 'user_id';
 	protected static $columns = array(
-		'email' => array('required' => TRUE),
+		'email' => array('type' => 'text', 'required' => TRUE),
 	);
 }
