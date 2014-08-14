@@ -21,7 +21,7 @@
 
 
 <script type="text/template" id="glucose-template">
-<legend>glucose<%- level_id > 0 ? ':#'+level_id : '+' %></legend>
+<legend>glucose<%- glucose_id > 0 ? ':#'+glucose_id : '+' %></legend>
 
 <input type="number" name="value" min="0" placeholder="83" required value="<%- value %>" />
 <input type="datetime" name="time" required value="<%- Views.localDateTime(time) %>" />
@@ -32,7 +32,7 @@
 
 
 <script type="text/template" id="insulin-template">
-<legend>insulin<%- injection_id > 0 ? ':#'+injection_id : '+' %></legend>
+<legend>insulin<%- insulin_id > 0 ? ':#'+insulin_id : '+' %></legend>
 
 <input type="number" name="units" min="0" placeholder="0" required value="<%- units %>" />
 

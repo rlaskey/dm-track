@@ -184,9 +184,9 @@ Views.Table = Backbone.View.extend({
 Routers.Table = Backbone.Router.extend({
 	routes: {
 		'': 'home',
-		'i/:injection_id': 'editInsulin',
+		'i/:PK': 'editInsulin',
 		'i': 'newInsulin',
-		'g/:level_id': 'editGlucose',
+		'g/:PK': 'editGlucose',
 		'g': 'newGlucose',
 		'r': 'editRange'
 	},
@@ -197,7 +197,7 @@ Routers.Table = Backbone.Router.extend({
 	},
 	editInsulin: function(PK){
 		My.modalView.setView(new Views.Insulin({
-			model: new Models.Insulin({injection_id: PK})
+			model: new Models.Insulin({insulin_id: PK})
 		})).model.fetch();
 	},
 	newInsulin: function(){
@@ -206,7 +206,7 @@ Routers.Table = Backbone.Router.extend({
 	},
 	editGlucose: function(PK){
 		My.modalView.setView(new Views.Glucose({
-			model: new Models.Glucose({level_id: PK})
+			model: new Models.Glucose({glucose_id: PK})
 		})).model.fetch();
 	},
 	newGlucose: function(){

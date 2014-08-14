@@ -36,10 +36,10 @@ class Table
 
 		$sTable = \Core\DB::$db->prepare(
 			'('.
-			'SELECT level_id PK, "Glucose" model, time,'.
+			'SELECT glucose_id PK, "Glucose" model, time,'.
 			'value, notes FROM glucose '.$where.
 			') UNION ('.
-			'SELECT injection_id PK, "Insulin", time,'.
+			'SELECT insulin_id PK, "Insulin", time,'.
 			'CONCAT(type, ":", units) value, notes FROM insulin '.$where.
 			') ORDER BY time DESC'
 		);

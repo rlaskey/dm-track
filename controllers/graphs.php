@@ -37,7 +37,7 @@ class Graphs
 	public static function glucose_data()
 	{
 		$sData = \Core\DB::$db->prepare(
-			'SELECT UNIX_TIMESTAMP(time) time, value, level_id '.
+			'SELECT UNIX_TIMESTAMP(time) time, value, glucose_id '.
 			'FROM glucose WHERE user_id = ? AND time >= ? AND time <= ?'
 		);
 		$sData->execute([

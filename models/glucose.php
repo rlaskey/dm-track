@@ -5,7 +5,6 @@
 
 class Glucose extends \Core\Model
 {
-	protected static $PK = 'level_id';
 	public static $columns = array(
 		'user_id' => ['fromSession' => 'user_id'],
 		'value' => ['type' => 'int'],

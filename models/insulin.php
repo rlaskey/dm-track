@@ -5,7 +5,6 @@
 
 class Insulin extends \Core\Model
 {
-	protected static $PK = 'injection_id';
 	public static $columns = array(
 		'user_id' => ['fromSession' => 'user_id'],
 		'units' => ['type' => 'float'],
