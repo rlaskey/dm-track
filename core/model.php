@@ -59,6 +59,8 @@ class Model
 
 	private static function insert(&$set)
 	{
+		\Core\DB::$db->beginTransaction();
+
 		$PK = \Core\DB::nextPK(static::table(), static::PK());
 		$SQL = 'INSERT INTO '.static::table().' ';
 		$columns = [static::PK()];
@@ -73,6 +75,8 @@ class Model
 		if ( ! $sInsert->execute($params))
 			http_response_code(500) && exit('Failed to create object :/');
 		$sInsert->closeCursor();
+
+		\Core\DB::$db->commit();
 
 		return $PK;
 	}
