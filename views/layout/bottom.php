@@ -27,7 +27,15 @@ var APP = {
 	}
 };
 </script>
-<?php if (isset($js)) foreach ($js AS $script): ?>
+
+<?php if (isset($js)): ?>
+<section id="js" class="hide">
+<?php foreach ($js AS $script):
+	$gettextPath = BASEPATH.'views/gettext/js/'.$script.'.php';
+	if (file_exists($gettextPath)) include($gettextPath); ?>
 	<script src="<?= $script ?>"></script>
 <?php endforeach; ?>
+</section>
+<?php endif; ?>
+
 </body>

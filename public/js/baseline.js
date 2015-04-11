@@ -29,7 +29,7 @@ Views.modalHolder.id = 'modal-holder';
 Views.modalHolder.className = 'hide';
 Views.modalHolder.innerHTML = '<div id="modal">'
 	+ '<a href="' + window.location.pathname + '#" id="modal-close" '
-	+ 'class="float-right">close</a>'
+	+ 'class="float-right">' + $('#js .close').text() + '</a>'
 	+ '</div>';
 document.querySelector('body').appendChild(Views.modalHolder);
 
@@ -74,7 +74,7 @@ Views.addAlert = function(message, className, hideAfter) {
 	$(Views.alerts).removeClass('hide');
 
 	if (typeof message === 'undefined' || message === '')
-		var message = 'Got it! Thanks';
+		var message = $('#js .alert-default').text();
 	if (typeof className === 'undefined' || className === '')
 		var className = 'alert-success';
 	if (typeof hideAfter === 'undefined' || hideAfter !== false)

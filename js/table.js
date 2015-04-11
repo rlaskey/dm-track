@@ -87,7 +87,7 @@ Views.Simple = Backbone.View.extend({
 		var xhr = this.model.patch();
 
 		if (xhr === false) {
-			var message = 'There was a problem with what you tried to do :/';
+			var message = $('#js .problem').text();
 			if (typeof this.model !== 'undefined')
 				message = this.model.validationError;
 			return alert(message);
