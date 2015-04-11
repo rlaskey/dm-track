@@ -13,12 +13,18 @@
 	_('save').'" />'.PHP_EOL; ?>
 
 <script type="text/template" id="row-glucose-template">
-<td><%- day %></td><td><%- hm %></td><td style="<%- Views.glucoseStyle(value) %>"><%- value %></td><td><%- notes %></td>
+<td><%- day %></td>
+<td><%- hm %></td>
+<td style="<%- Views.glucoseStyle(value) %>"><%- value %></td>
+<td><%- notes %></td>
 </script>
 
 
 <script type="text/template" id="row-insulin-template">
-<td><%- day %></td><td><%- hm %></td><td><%- value %></td><td><%- notes %></td>
+<td><%- day %></td>
+<td><%- hm %></td>
+<td><%- value %></td>
+<td><%- notes %></td>
 </script>
 
 
