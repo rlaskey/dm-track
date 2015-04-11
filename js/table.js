@@ -66,7 +66,11 @@ Views.Simple = Backbone.View.extend({
 		'change input, textarea, select': 'changeInput',
 		'submit': 'save',
 	},
-	initialize: function() {this.listenTo(this.model, 'sync', this.render);},
+	initialize: function() {
+		this.spinner();
+		this.listenTo(this.model, 'sync', this.render);
+	},
+	spinner: function() {this.$el.html($('#spinner').html());},
 	render: function() {
 		this.$el.html(this.template(this.model.attributes));
 		if (this.selectFields) _.each(this.selectFields, this.setSelect, this);
@@ -76,6 +80,7 @@ Views.Simple = Backbone.View.extend({
 	},
 	save: function(event) {
 		event.preventDefault();
+		this.spinner();
 
 		if (this.model.get('time')) {
 			var asUTC = new Date(this.model.get('time') + 'Z'),

@@ -73,4 +73,9 @@
 <input type="submit" name="save" value="<?= _('go') ?>" />
 </script>
 
+
+<script type="text/template" id="spinner">
+<?= _('Processing.. Please wait') ?>
+</script>
+
 <?php require BASEPATH.'views/layout/bottom.php';
