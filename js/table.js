@@ -67,7 +67,7 @@ Views.Simple = Backbone.View.extend({
 		'submit': 'save',
 	},
 	initialize: function() {
-		this.spinner();
+		this.listenTo(this.model, 'request', this.spinner);
 		this.listenTo(this.model, 'sync', this.render);
 	},
 	spinner: function() {this.$el.html($('#spinner').html());},
@@ -80,7 +80,6 @@ Views.Simple = Backbone.View.extend({
 	},
 	save: function(event) {
 		event.preventDefault();
-		this.spinner();
 
 		if (this.model.get('time')) {
 			var asUTC = new Date(this.model.get('time') + 'Z'),
