@@ -9,6 +9,8 @@
 <tbody id="tbody"></tbody>
 </table>
 
+<?php $inputSave = '<input type="submit" name="save" value="'.
+	_('save').'" />'.PHP_EOL; ?>
 
 <script type="text/template" id="row-glucose-template">
 <td><%- day %></td><td><%- hm %></td><td style="<%- Views.glucoseStyle(value) %>"><%- value %></td><td><%- notes %></td>
@@ -27,7 +29,7 @@
 <input type="datetime" name="time" required value="<%- Views.localDateTime(time) %>" />
 <textarea cols="8" rows="2" name="notes" maxlength="83"><%- notes %></textarea>
 
-<input type="submit" name="save" value="save" />
+<?= $inputSave ?>
 </script>
 
 
@@ -45,7 +47,7 @@
 <textarea cols="8" rows="2" name="notes" maxlength="83"><%- notes %></textarea>
 <input type="datetime" name="time" required value="<%- Views.localDateTime(time) %>" />
 
-<input type="submit" name="save" value="save" />
+<?= $inputSave ?>
 </script>
 
 
@@ -58,7 +60,7 @@
 <input required type="text" name="stop" value="<%- stop %>"
 	placeholder="<?= \Config::$defaultRange['stop'] ?>" />
 
-<input type="submit" name="save" value="go" />
+<input type="submit" name="save" value="<?= _('go') ?>" />
 </script>
 
 <?php require BASEPATH.'views/layout/bottom.php';
