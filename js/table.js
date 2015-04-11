@@ -43,7 +43,7 @@ Views.localDateTime = function(datetime){
 	else var date = new Date(datetime.replace(' ', 'T') + 'Z');
 	return date.getFullYear() + '-'
 		+ ('0' + (1 + date.getMonth())).substr(-2) + '-'
-		+ ('0' + date.getDate()).substr(-2) + ' '
+		+ ('0' + date.getDate()).substr(-2) + 'T'
 		+ ('0' + date.getHours()).substr(-2) + ':'
 		+ ('0' + date.getMinutes()).substr(-2);
 };
@@ -78,8 +78,10 @@ Views.Simple = Backbone.View.extend({
 		event.preventDefault();
 
 		if(this.model.get('time')){
-			var date = new Date(this.model.get('time').replace(' ', 'T'));
-			this.model.set('time', date.toISOString());
+			var asUTC = new Date(this.model.get('time') + 'Z'),
+				corrected = asUTC.getTime()
+					+ (60000 * (new Date).getTimezoneOffset());
+			this.model.set('time', new Date(corrected).toISOString());
 		}
 
 		var xhr = this.model.patch();

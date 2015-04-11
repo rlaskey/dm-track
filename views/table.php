@@ -31,8 +31,10 @@
 <script type="text/template" id="glucose-template">
 <legend>glucose<%- glucose_id > 0 ? ':#'+glucose_id : '+' %></legend>
 
-<input type="number" name="value" min="0" placeholder="83" required value="<%- value %>" />
-<input type="datetime" name="time" required value="<%- Views.localDateTime(time) %>" />
+<input type="number" name="value" min="0" placeholder="83" required
+	value="<%- value %>" />
+<input type="datetime-local" name="time" required
+	value="<%- Views.localDateTime(time) %>" />
 <textarea cols="8" rows="2" name="notes" maxlength="83"><%- notes %></textarea>
 
 <?= $inputSave ?>
@@ -42,7 +44,8 @@
 <script type="text/template" id="insulin-template">
 <legend>insulin<%- insulin_id > 0 ? ':#'+insulin_id : '+' %></legend>
 
-<input type="number" name="units" min="0" placeholder="0" required value="<%- units %>" />
+<input type="number" name="units" min="0" placeholder="0" required
+	value="<%- units %>" />
 
 <select name="type">
 <?php foreach (\Models\Insulin::$columns['type']['options'] AS $option): ?>
@@ -51,7 +54,8 @@
 </select>
 
 <textarea cols="8" rows="2" name="notes" maxlength="83"><%- notes %></textarea>
-<input type="datetime" name="time" required value="<%- Views.localDateTime(time) %>" />
+<input type="datetime-local" name="time" required
+	value="<%- Views.localDateTime(time) %>" />
 
 <?= $inputSave ?>
 </script>
