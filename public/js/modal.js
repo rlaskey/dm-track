@@ -20,19 +20,19 @@ Views.modalHolder.innerHTML = '<div id="modal">'
 	+ '</div>';
 document.querySelector('body').appendChild(Views.modalHolder);
 
-Views.displayModal = function(bool){
+Views.displayModal = function(bool) {
 	var func = 'remove';
-	if(bool === false) func = 'add';
+	if (bool === false) func = 'add';
 	$(Views.modalHolder)[func + 'Class']('hide');
 	$(Views.modalBackDrop)[func + 'Class']('hide');
 }
 
-Views.modalShown = function(){return ! $(Views.modalHolder).hasClass('hide');}
+Views.modalShown = function() {return ! $(Views.modalHolder).hasClass('hide');}
 
 Views.Modal = Backbone.View.extend({
 	el: '#modal',
-	setView: function(newView){
-		if(this.child) this.child.remove();
+	setView: function(newView) {
+		if (this.child) this.child.remove();
 		this.child = newView;
 		this.el.appendChild(this.child.el);
 		Views.displayModal(true);

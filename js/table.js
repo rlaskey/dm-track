@@ -11,18 +11,18 @@ var My = My || {},
 
 
 Models.Row = Backbone.Model.extend({
-	dayTime: function(priorDay){
+	dayTime: function(priorDay) {
 		var date = new Date(this.get('time').replace(' ', 'T') + 'Z');
 		var dateParts = date.toString().split(' ');
 
 		var day = dateParts[1] + '/' + date.getDate();
-		if(day !== priorDay) this.set('day', day);
+		if (day !== priorDay) this.set('day', day);
 		else this.set('day', '');
 
 		var H = date.getHours(), l = H, P = 'am';
-		if(H === '00') l = '12';
-		if(H >= 12) P = 'pm';
-		if(H > 12) l = H - 12;
+		if (H === '00') l = '12';
+		if (H >= 12) P = 'pm';
+		if (H > 12) l = H - 12;
 		this.set('hm', l + ':' + ('0' + date.getMinutes()).substr(-2) + P);
 
 		return day;
@@ -38,8 +38,8 @@ Collections.Row = Backbone.Collection.extend({
 });
 
 
-Views.localDateTime = function(datetime){
-	if( ! datetime) var date = new Date;
+Views.localDateTime = function(datetime) {
+	if ( ! datetime) var date = new Date;
 	else var date = new Date(datetime.replace(' ', 'T') + 'Z');
 	return date.getFullYear() + '-'
 		+ ('0' + (1 + date.getMonth())).substr(-2) + '-'
@@ -49,13 +49,13 @@ Views.localDateTime = function(datetime){
 };
 
 
-Views.glucoseStyle = function(mgDL){
+Views.glucoseStyle = function(mgDL) {
 	var color = 0;
-	if(mgDL < 180 && mgDL > 80){
+	if (mgDL < 180 && mgDL > 80) {
 		var percentage = (mgDL - 80) / 100;
 		color = 240 - parseInt(240 * percentage);
 	}
-	else if(mgDL <= 80) color = 240;
+	else if (mgDL <= 80) color = 240;
 	return 'background:hsl(' + color + ', 64%, 83%);';
 };
 
@@ -66,18 +66,18 @@ Views.Simple = Backbone.View.extend({
 		'change input, textarea, select': 'changeInput',
 		'submit': 'save',
 	},
-	initialize: function(){this.listenTo(this.model, 'sync', this.render);},
-	render: function(){
+	initialize: function() {this.listenTo(this.model, 'sync', this.render);},
+	render: function() {
 		this.$el.html(this.template(this.model.attributes));
-		if(this.selectFields) _.each(this.selectFields, this.setSelect, this);
-		if( ! _.isUndefined(this.model.get('time'))) this.model
+		if (this.selectFields) _.each(this.selectFields, this.setSelect, this);
+		if ( ! _.isUndefined(this.model.get('time'))) this.model
 			.set('time', Views.localDateTime(this.model.get('time')));
 		return this;
 	},
-	save: function(event){
+	save: function(event) {
 		event.preventDefault();
 
-		if(this.model.get('time')){
+		if (this.model.get('time')) {
 			var asUTC = new Date(this.model.get('time') + 'Z'),
 				corrected = asUTC.getTime()
 					+ (60000 * (new Date).getTimezoneOffset());
@@ -86,25 +86,25 @@ Views.Simple = Backbone.View.extend({
 
 		var xhr = this.model.patch();
 
-		if(xhr === false){
+		if (xhr === false) {
 			var message = 'There was a problem with what you tried to do :/';
-			if(typeof this.model !== 'undefined')
+			if (typeof this.model !== 'undefined')
 				message = this.model.validationError;
 			return alert(message);
 		}
 
-		$(xhr).one('load', function(event){
+		$(xhr).one('load', function(event) {
 			var message = '', className = '', hideAfter = true;
-			if(event.target.status >= 400){
+			if (event.target.status >= 400) {
 				message = event.target.responseText;
 				className = 'alert-danger';
 				hideAfter = false;
 			}
 			Views.addAlert(message, className, hideAfter);
-			if(hideAfter) document.getElementById('modal-close').click();
+			if (hideAfter) document.getElementById('modal-close').click();
 		});
 	},
-	changeInput: function(event){
+	changeInput: function(event) {
 		var element = event.currentTarget;
 		this.model.set(element.name, element.value);
 	},
@@ -117,11 +117,11 @@ Views.Glucose = Views.Simple.extend({
 Views.Insulin = Views.Simple.extend({
 	template: _.template($('#insulin-template').html()),
 	selectFields: ['type'],
-	setSelect: function(field){
+	setSelect: function(field) {
 		var input = this.el.querySelector('[name=' + field + ']');
-		if(input === null) return;
+		if (input === null) return;
 		var currentVal = this.model.get(field);
-		if(currentVal === null) return this.model.set(field, input.value);
+		if (currentVal === null) return this.model.set(field, input.value);
 		input.value = this.model.get(field);
 	}
 });
@@ -135,11 +135,11 @@ Views.Row = Backbone.View.extend({
 	tagName: 'tr',
 	className: 'pointer',
 	events: {'click': 'edit'},
-	render: function(){
+	render: function() {
 		this.$el.html(this.template(this.model.attributes));
 		return this;
 	},
-	edit: function(){
+	edit: function() {
 		My.RouterTable.navigate(
 			this.model.get('model').substr(0, 1).toLowerCase() + '/'
 			+ this.model.get('PK'),
@@ -159,20 +159,20 @@ Views.Table = Backbone.View.extend({
 	el: '#data',
 	rows: [],
 	day: '',
-	initialize: function(){
+	initialize: function() {
 		this.collection = new Collections.Row;
 		this.listenTo(this.collection, 'request', this.clear);
 		this.listenTo(this.collection, 'sync', this.render);
 	},
-	clear: function(){
-		for(var i = 0, len = this.rows.length; i < len; i++)
+	clear: function() {
+		for (var i = 0, len = this.rows.length; i < len; i++)
 			this.rows.pop().remove();
 	},
-	render: function(){
+	render: function() {
 		this.collection.each(this.renderRow, this);
 		return this;
 	},
-	renderRow: function(row){
+	renderRow: function(row) {
 		this.day = row.dayTime(this.day);
 		var type = 'Row' + row.get('model');
 		var rowView = new Views[type]({model: row});
@@ -192,30 +192,30 @@ Routers.Table = Backbone.Router.extend({
 		'g': 'newGlucose',
 		'r': 'editRange'
 	},
-	home: function(){
-		if( ! My.ViewTable) My.ViewTable = new Views.Table;
+	home: function() {
+		if ( ! My.ViewTable) My.ViewTable = new Views.Table;
 		My.ViewTable.collection.fetch();
 		Views.displayModal(false);
 	},
-	editInsulin: function(PK){
+	editInsulin: function(PK) {
 		My.modalView.setView(new Views.Insulin({
 			model: new Models.Insulin({insulin_id: PK})
 		})).model.fetch();
 	},
-	newInsulin: function(){
+	newInsulin: function() {
 		My.modalView.setView(new Views.Insulin({model: new Models.Insulin}))
 			.render();
 	},
-	editGlucose: function(PK){
+	editGlucose: function(PK) {
 		My.modalView.setView(new Views.Glucose({
 			model: new Models.Glucose({glucose_id: PK})
 		})).model.fetch();
 	},
-	newGlucose: function(){
+	newGlucose: function() {
 		My.modalView.setView(new Views.Glucose({model: new Models.Glucose}))
 			.render();
 	},
-	editRange: function(){
+	editRange: function() {
 		My.modalView.setView(new Views.Range({model: new Models.Range}))
 			.model.fetch();
 	}

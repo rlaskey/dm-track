@@ -3,20 +3,20 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function(){
+(function() {
 	var storedData, mainWidth, timer;
 
-	var glucoseColor = function(data){
+	var glucoseColor = function(data) {
 		var color = 0;
-		if(data.glucose < 180 && data.glucose > 80){
+		if (data.glucose < 180 && data.glucose > 80) {
 			var percentage = (data.glucose - 80) / 100;
 			color = 240 - parseInt(240 * percentage);
 		}
-		else if(data.glucose <= 80) color = 240;
+		else if (data.glucose <= 80) color = 240;
 		return 'hsl(' + color + ',83%,42%)';
 	};
 
-	var drawPlot = function(error, data){
+	var drawPlot = function(error, data) {
 		storedData = data;
 		var main = document.querySelector('main');
 		mainWidth = main.offsetWidth;
@@ -33,7 +33,7 @@
 			);
 		var x = d3.scale.linear().range([0, width]).domain([0, 24]),
 			y = d3.scale.linear().range([height, 0]);
-		y.domain(d3.extent(data, function(d){return parseInt(d.glucose);}))
+		y.domain(d3.extent(data, function(d) {return parseInt(d.glucose);}))
 			.nice();
 
 		var xAxis = d3.svg.axis().scale(x).orient('bottom'),
@@ -55,26 +55,26 @@
 
 		svg.selectAll('circle').data(data).enter().append('circle')
 			.attr('r', 5)
-			.attr('cx', function(d){return x(d.hour);})
-			.attr('cy', function(d){return y(d.glucose);})
+			.attr('cx', function(d) {return x(d.hour);})
+			.attr('cy', function(d) {return y(d.glucose);})
 			.style('fill', glucoseColor);
 	};
 
-	var loadPlot = function(){
+	var loadPlot = function() {
 		window.removeEventListener('load', loadPlot);
 		d3.tsv('graphs/glucose_data', drawPlot);
 	};
 	window.addEventListener('load', loadPlot);
 
-	var reloadPlot = function(){
+	var reloadPlot = function() {
 		var main = document.querySelector('main');
-		if(mainWidth === main.offsetWidth) return;
+		if (mainWidth === main.offsetWidth) return;
 
 		var child = main.querySelector('svg');
-		if(child) main.removeChild(child);
+		if (child) main.removeChild(child);
 
 		clearTimeout(timer);
-		timer = setTimeout(function(){drawPlot(null, storedData);}, 330);
+		timer = setTimeout(function() {drawPlot(null, storedData);}, 330);
 	};
 	window.addEventListener('resize', reloadPlot);
 })();

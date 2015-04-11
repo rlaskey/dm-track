@@ -16,12 +16,12 @@
 var APP = {
 	csrf: {
 		name: '<?= \Core\CSRF::name() ?>',
-		val: function(){
-			if( ! document.cookie) return;
+		val: function() {
+			if ( ! document.cookie) return;
 			var cookies = document.cookie.split('; ');
-			for(var i = 0; i < cookies.length; i++){
+			for (var i = 0; i < cookies.length; i++) {
 				var parts = cookies[i].split('=');
-				if(parts[0] === APP.csrf.name) return parts[1];
+				if (parts[0] === APP.csrf.name) return parts[1];
 			}
 		}
 	}

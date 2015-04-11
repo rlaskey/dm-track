@@ -2,14 +2,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-$.ajaxSettings.beforeSend = function(xhr, settings){
+$.ajaxSettings.beforeSend = function(xhr, settings) {
 	xhr.setRequestHeader('X-CSRF-Token', APP.csrf.val());
 };
 
 
-Backbone.Model.prototype.patch = function(){
+Backbone.Model.prototype.patch = function() {
 	var pick = _.flatten(arguments);
-	if(pick.length === 0) pick = _.keys(this.defaults);
+	if (pick.length === 0) pick = _.keys(this.defaults);
 	return this.save(_.pick(this.attributes, pick), {patch:true});
 };
 
@@ -33,19 +33,19 @@ Views.modalHolder.innerHTML = '<div id="modal">'
 	+ '</div>';
 document.querySelector('body').appendChild(Views.modalHolder);
 
-Views.displayModal = function(bool){
+Views.displayModal = function(bool) {
 	var func = 'remove';
-	if(bool === false) func = 'add';
+	if (bool === false) func = 'add';
 	$(Views.modalHolder)[func + 'Class']('hide');
 	$(Views.modalBackDrop)[func + 'Class']('hide');
 }
 
-Views.modalShown = function(){return ! $(Views.modalHolder).hasClass('hide');}
+Views.modalShown = function() {return ! $(Views.modalHolder).hasClass('hide');}
 
 Views.Modal = Backbone.View.extend({
 	el: '#modal',
-	setView: function(newView){
-		if(this.child) this.child.remove();
+	setView: function(newView) {
+		if (this.child) this.child.remove();
 		this.child = newView;
 		this.el.appendChild(this.child.el);
 		Views.displayModal(true);
@@ -62,22 +62,22 @@ Views.alerts.id = 'alerts';
 Views.alerts.className = 'hide pointer';
 document.querySelector('body').appendChild(Views.alerts);
 
-$(Views.alerts).on('click', function(event){
+$(Views.alerts).on('click', function(event) {
 	event.currentTarget.classList.add('hide');
 });
 
-Views.hideAlerts = _.debounce(function(){
+Views.hideAlerts = _.debounce(function() {
 	$(Views.alerts).addClass('hide').empty();
 }, 4200);
 
-Views.addAlert = function(message, className, hideAfter){
+Views.addAlert = function(message, className, hideAfter) {
 	$(Views.alerts).removeClass('hide');
 
-	if(typeof message === 'undefined' || message === '')
+	if (typeof message === 'undefined' || message === '')
 		var message = 'Got it! Thanks';
-	if(typeof className === 'undefined' || className === '')
+	if (typeof className === 'undefined' || className === '')
 		var className = 'alert-success';
-	if(typeof hideAfter === 'undefined' || hideAfter !== false)
+	if (typeof hideAfter === 'undefined' || hideAfter !== false)
 		Views.hideAlerts();
 
 	$(Views.alerts).prepend(

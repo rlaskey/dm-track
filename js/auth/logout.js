@@ -5,7 +5,7 @@
 
 navigator.id.watch({
 	loggedInUser: persona,
-	onlogin: function(){},
-	onlogout: function(){},
-	onready: function(){navigator.id.logout();}
+	onlogin: function() {},
+	onlogout: function() {},
+	onready: function() {navigator.id.logout();}
 });
