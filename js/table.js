@@ -97,16 +97,17 @@ Views.Simple = Backbone.View.extend({
 			return alert(message);
 		}
 
-		$(xhr).one('load', function(event) {
+		$(xhr).one('loadend', _.bind(function(event) {
 			var message = '', className = '', hideAfter = true;
-			if (event.target.status >= 400) {
-				message = event.target.responseText;
+			if ( ! event.target.status || event.target.status >= 400) {
+				message = event.target.responseText || ':/';
 				className = 'alert-danger';
 				hideAfter = false;
+				this.render();
 			}
 			Views.addAlert(message, className, hideAfter);
 			if (hideAfter) document.getElementById('modal-close').click();
-		});
+		}, this));
 	},
 	changeInput: function(event) {
 		var element = event.currentTarget;
