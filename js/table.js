@@ -40,7 +40,7 @@ Collections.Row = Backbone.Collection.extend({
 
 Views.localDateTime = function(datetime) {
 	if ( ! datetime) var date = new Date;
-	else var date = new Date(datetime.replace(' ', 'T') + 'Z');
+	else var date = new Date(datetime.substr(0, 16).replace(' ', 'T') + 'Z');
 	return date.getFullYear() + '-'
 		+ ('0' + (1 + date.getMonth())).substr(-2) + '-'
 		+ ('0' + date.getDate()).substr(-2) + 'T'
